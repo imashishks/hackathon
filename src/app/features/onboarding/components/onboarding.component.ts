@@ -43,4 +43,10 @@ export class OnboardingComponent implements OnInit {
   ngOnInit(): void {
     this.selectedTab = this.ONBOARDING_TYPE[0];
   }
+  getOnboardingType() {
+    return this.ONBOARDING_TYPE;
+  }
+  tabClicked(selectedTab) {
+    this.selectedTab = selectedTab;
+  }
 }

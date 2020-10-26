@@ -9,7 +9,7 @@
       <a
         *ngFor="let type of getOnboardingType()"
         mat-tab-link
-        (click)="tabClicked(type, formDirective)"
+        (click)="tabClicked(type)"
         [active]="selectedTab.key === type.key"
       >
         {{ type.value }}
