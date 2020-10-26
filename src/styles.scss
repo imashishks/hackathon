@@ -75,3 +75,133 @@ p {
   margin: 0;
   padding: 0;
 }
+
+// Flex box utilities
+
+.flex-container {
+  display: flex;
+}
+.flex-dir-col {
+  flex-direction: column;
+}
+.flex-dir-row {
+  flex-direction: row;
+}
+.align-center {
+  align-items: center;
+  justify-content: center;
+}
+.align-hor-center {
+  align-items: center;
+}
+.align-vert-center {
+  justify-content: center;
+}
+.align-hor-space-between {
+  justify-content: space-between;
+}
+.align-self-end {
+  align-self: flex-end;
+}
+
+//Font utiltites
+
+$font-colors: (
+  "primary": $hack-primary,
+  "accent": $hack-accent,
+  "black": $hack-black,
+  "lightgray": $hack-lightgray,
+);
+$font-weights: (
+  "regular": $hack-font-regular,
+  "light": $hack-font-light,
+  "bold": $hack-font-bold,
+);
+$font-family: (
+  "roboto": $hack-font,
+);
+
+$font-sizes: 10, 12, 14, 16, 20, 36;
+@each $familyKey, $familyValue in $font-family {
+  @each $size in $font-sizes {
+    @each $colorKey, $colorValue in $font-colors {
+      @each $weightKey, $weightValue in $font-weights {
+        .font-#{$weightKey}-#{$size}-#{$colorKey} {
+          font-size: #{$size}px;
+          font-family: #{$familyValue};
+          color: #{$colorValue};
+          font-weight: $weightValue;
+        }
+      }
+    }
+  }
+}
+
+//Margin utilites
+$margin-sides: (
+  "mt": "margin-top",
+  "mb": "margin-bottom",
+  "ml": "margin-left",
+  "mr": "margin-right",
+);
+
+$margin-sizes: 5, 10, 20, 30, 50;
+
+@each $size in $margin-sizes {
+  // use ml-10 for margin-left:10px, like wise mr-2, mt-6 and so on as per your use
+  @each $key, $value in $margin-sides {
+    .#{$key}-#{$size} {
+      #{$value}: #{$size}px !important;
+    }
+  }
+
+  // use margin-10 for margin:10px and so on
+  .margin-#{$size} {
+    margin: #{$size}px !important;
+  }
+
+  // use margin-horizontal-10 for margin:0px 10px and so on
+  .margin-horizontal-#{$size} {
+    margin: 0px #{$size}px !important;
+  }
+
+  // use margin-vertical-10 for margin:10px 0px and so on
+  .margin-vertical-#{$size} {
+    margin: #{$size}px 0px !important;
+  }
+}
+
+//Padding utilities
+
+$padding-sides: (
+  "pt": "padding-top",
+  "pb": "padding-bottom",
+  "pl": "padding-left",
+  "pr": "padding-right",
+);
+
+$padding-sizes: 5, 10, 20, 30, 50;
+
+@each $size in $padding-sizes {
+  // use pl-10 for padding-left:10px, like wise pr-2, pt-6 and so on as per your use
+  @each $key, $value in $padding-sides {
+    .#{$key}-#{$size} {
+      #{$value}: #{$size}px !important;
+    }
+  }
+
+  // use padding-10 for padding:10px and so on
+  .padding-#{$size} {
+    padding: #{$size}px !important;
+  }
+
+  // use padding-horizontal-10 for padding:0px 10px and so on
+  .padding-horizontal-#{$size} {
+    padding: 0px #{$size}px !important;
+  }
+
+  // use padding-vertical-10 for padding:10px 0px and so on
+  .padding-vertical-#{$size} {
+    padding: #{$size}px 0px !important;
+  }
+}
