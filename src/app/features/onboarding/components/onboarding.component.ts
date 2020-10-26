@@ -7,6 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardingComponent implements OnInit {
   constructor() {}
+  private ONBOARDING_TYPE = [
+    {
+      key: 'signup',
+      value: 'Sign Up',
+    },
+    {
+      key: 'login',
+      value: 'Log In',
+    },
+  ];
+  private ONBOARDING_INPUT_REF = {
+    name: {
+      label: 'Name',
+      type: 'text',
+    },
+    employeeId: {
+      label: 'Employee ID',
+      type: 'text',
+    },
+    emailId: {
+      label: 'Email ID',
+      type: 'text',
+    },
+    password: {
+      label: 'Password',
+      type: 'password',
+    },
+  };
+  selectedTab: {
+    key: string;
+    value: string;
+  };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedTab = this.ONBOARDING_TYPE[0];
+  }
 }
