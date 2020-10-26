@@ -62,4 +62,9 @@ describe('OnboardingComponent', () => {
     // @ts-ignore
     expect(component.selectedTab).toEqual(component.ONBOARDING_TYPE[0]);
   });
+  it('Onboarding: should select the signup tab by default', () => {
+    component.ngOnInit();
+    // @ts-ignore
+    expect(component.selectedTab).toEqual(component.ONBOARDING_TYPE[0]);
+  });
 });

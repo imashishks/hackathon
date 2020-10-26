@@ -1,1 +1,19 @@
-<p>onboarding works!</p>
+<div class="onboarding__wrap flex-container flex-dir-col align-center">
+  <img
+    class="onboarding__mainlogo"
+    src="./../../../../assets/images/logo.png"
+  />
+  <p>For developers by developers</p>
+  <mat-card class="onboarding__card">
+    <nav mat-stretch-tabs mat-tab-nav-bar>
+      <a
+        *ngFor="let type of getOnboardingType()"
+        mat-tab-link
+        (click)="tabClicked(type, formDirective)"
+        [active]="selectedTab.key === type.key"
+      >
+        {{ type.value }}
+      </a>
+    </nav>
+  </mat-card>
+</div>
