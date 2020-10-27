@@ -1,0 +1,8 @@
+<div [ngClass]="{ loader__wrap: config.showFullScreen }" *ngIf="config.show">
+  <div
+    class="loader__overlay"
+    [ngClass]="{ loader__overlay: !config.showFullScreen }"
+  >
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>

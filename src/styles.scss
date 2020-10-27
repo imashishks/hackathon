@@ -205,3 +205,42 @@ $padding-sizes: 5, 10, 20, 30, 50;
     padding: #{$size}px 0px !important;
   }
 }
+
+// Button  Directive Utilites
+.button__base {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 1s;
+}
+.button__base:hover {
+  opacity: 0.7;
+}
+.button__base:disabled {
+  background-color: $hack-lightgray;
+}
+
+.primary {
+  color: $hack-white;
+  background-color: $hack-primary;
+}
+.transparent-dark {
+  color: $hack-black;
+  background-color: transparent;
+}
+
+.transparent-light {
+  color: $hack-white;
+  background-color: transparent;
+}
+.primary-outlined {
+  border: 1px solid $hack-primary;
+  color: $hack-primary;
+  background-color: transparent;
+}
+.accent-outlined {
+  border: 1px solid $hack-accent;
+  color: $hack-accent;
+  background-color: transparent;
+}

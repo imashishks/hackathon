@@ -13,7 +13,7 @@
     "component-class-suffix": true,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
-    "directive-selector": [true, "attribute", "hack", "camelCase"],
+    "directive-selector": [true, "attribute", "hack", "kebab-case"],
     "component-selector": [true, "element", "hack", "kebab-case"],
     "eofline": true,
     "import-blacklist": [true, "rxjs/Rx"],
