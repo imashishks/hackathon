@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
+import { ButtonModel, LoaderModel } from '../../../shared/models/config.model';
 @Component({
   selector: 'hack-onboarding',
   templateUrl: './onboarding.component.html',
@@ -40,13 +41,20 @@ export class OnboardingComponent implements OnInit {
     key: string;
     value: string;
   };
+  btnConfig: ButtonModel = {
+    type: 'primary',
+    disabled: false,
+  };
+  loaderConfig: LoaderModel = {
+    show: false,
+    showFullScreen: true,
+  };
   onboardingForm: { login; signup };
   onboardingFormProps: Array<string>;
   onboardingInputRef = this.getOnboardingInputRef();
 
   ngOnInit(): void {
     this.selectedTab = this.ONBOARDING_TYPE[0];
-
     this.createFormBuilder();
     this.onboardingFormProps = Object.keys(
       this.onboardingForm[this.selectedTab.key].controls
@@ -79,5 +87,21 @@ export class OnboardingComponent implements OnInit {
     );
     formDirective.resetForm();
     this.onboardingForm[this.selectedTab.key].reset();
+  }
+  onboardingBtnClicked(formDirective: FormGroupDirective): void {
+    const formDataStatus = this.onboardingForm[this.selectedTab.key].status;
+
+    if (formDataStatus === 'VALID') {
+      this.loaderConfig = { ...this.loaderConfig, ...{ show: true } };
+      this.selectedTab.key === 'singup'
+        ? this.handleSignupServiceReq()
+        : this.handleLoginServiceReq();
+    }
+  }
+  handleLoginServiceReq() {
+    // handle login service
+  }
+  handleSignupServiceReq() {
+    // handle signup service
   }
 }

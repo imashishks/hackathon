@@ -1,4 +1,6 @@
-<div class="onboarding__wrap flex-container flex-dir-col align-center">
+<div
+  class="onboarding__wrap flex-container flex-dir-col align-center align-self-end"
+>
   <img
     class="onboarding__mainlogo"
     src="./../../../../assets/images/logo.png"
@@ -47,6 +49,15 @@
           The email Id format is incorrect
         </mat-error>
       </mat-form-field>
+      <hack-loader [config]="loaderConfig"></hack-loader>
+      <button
+        hack-button
+        [config]="btnConfig"
+        class="align-self-end"
+        (click)="onboardingBtnClicked(formDirective)"
+      >
+        {{ selectedTab.value }}
+      </button>
     </form>
   </mat-card>
 </div>
