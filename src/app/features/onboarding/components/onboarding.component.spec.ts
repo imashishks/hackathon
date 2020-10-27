@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { OnboardingComponent } from './onboarding.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { MatTabLink } from '@angular/material/tabs';
@@ -39,6 +39,8 @@ describe('OnboardingComponent', () => {
     },
   };
   let tabBtn: DebugElement;
+  let form: DebugElement;
+  let formGroupDirective: FormGroupDirective;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,7 +55,9 @@ describe('OnboardingComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     tabBtn = fixture.debugElement.query(By.css('.activeTab'));
-    console.log(tabBtn.nativeElement);
+    //dummy formgroupDirective to avoid undefined tabClick function
+    formGroupDirective = new FormGroupDirective([], []);
+    form = fixture.debugElement.query(By.css('form'));
   });
 
   it('Organisation component should be created', () => {
@@ -90,7 +94,7 @@ describe('OnboardingComponent', () => {
     component.ngOnInit();
 
     // try clicking login
-    component.tabClicked(onboardingType[1]);
+    component.tabClicked(onboardingType[1], formGroupDirective);
     expect(component.selectedTab).toEqual(onboardingType[1]);
     fixture.detectChanges();
 
@@ -100,7 +104,7 @@ describe('OnboardingComponent', () => {
         tabBtn = fixture.debugElement.query(By.css('.activeTab'));
         expect(tabBtn.nativeElement.textContent.trim()).toBe('Log In');
         // emulating the sign up click
-        component.tabClicked(onboardingType[0]);
+        component.tabClicked(onboardingType[0], formGroupDirective);
         expect(component.selectedTab).toEqual(onboardingType[0]);
         fixture.detectChanges();
         return fixture.whenRenderingDone();
@@ -111,8 +115,8 @@ describe('OnboardingComponent', () => {
       });
   });
 
-  it('created form groups instaces should be of FormGroup type', () => {
-    component.ngOnInit();
+  fit('created form groups instaces should be of FormGroup type', () => {
+    component.createFormBuilder.bind(component);
     expect(component.onboardingForm.login instanceof FormGroup).toBeTruthy();
     expect(component.onboardingForm.signup instanceof FormGroup).toBeTruthy();
   });
