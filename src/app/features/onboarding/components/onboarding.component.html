@@ -9,12 +9,44 @@
       <a
         *ngFor="let type of getOnboardingType()"
         mat-tab-link
-        (click)="tabClicked(type)"
+        (click)="tabClicked(type, formDirective)"
         [active]="selectedTab.key === type.key"
         [ngClass]="{ activeTab: selectedTab.key === type.key }"
       >
         {{ type.value }}
       </a>
     </nav>
+    <form
+      [formGroup]="onboardingForm[selectedTab.key]"
+      #formDirective="ngForm"
+      class="onboarding__signup__form flex-container flex-dir-col"
+    >
+      <mat-form-field
+        *ngFor="let key of onboardingFormProps"
+        class="example-full-width"
+      >
+        <mat-label>{{ onboardingInputRef[key].label }}</mat-label>
+        <input
+          [formControlName]="key"
+          matInput
+          type="{{ onboardingInputRef[key].type }}"
+        />
+        <mat-error
+          *ngIf="
+            onboardingForm[selectedTab.key].controls[key].hasError('required')
+          "
+        >
+          {{ onboardingInputRef[key].label + " is required" }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            onboardingForm[selectedTab.key].controls[key].hasError('email') &&
+            !onboardingForm[selectedTab.key].controls[key].hasError('required')
+          "
+        >
+          The email Id format is incorrect
+        </mat-error>
+      </mat-form-field>
+    </form>
   </mat-card>
 </div>

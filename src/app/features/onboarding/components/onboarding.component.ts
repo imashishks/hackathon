@@ -40,10 +40,17 @@ export class OnboardingComponent implements OnInit {
     key: string;
     value: string;
   };
-  onboardingForm;
+  onboardingForm: { login; signup };
+  onboardingFormProps: Array<string>;
+  onboardingInputRef = this.getOnboardingInputRef();
+
   ngOnInit(): void {
     this.selectedTab = this.ONBOARDING_TYPE[0];
+
     this.createFormBuilder();
+    this.onboardingFormProps = Object.keys(
+      this.onboardingForm[this.selectedTab.key].controls
+    );
   }
   createFormBuilder() {
     this.onboardingForm = {
@@ -62,7 +69,15 @@ export class OnboardingComponent implements OnInit {
   getOnboardingType() {
     return this.ONBOARDING_TYPE;
   }
-  tabClicked(selectedTab) {
+  getOnboardingInputRef() {
+    return this.ONBOARDING_INPUT_REF;
+  }
+  tabClicked(selectedTab, formDirective: FormGroupDirective): void {
     this.selectedTab = selectedTab;
+    this.onboardingFormProps = Object.keys(
+      this.onboardingForm[this.selectedTab.key].controls
+    );
+    formDirective.resetForm();
+    this.onboardingForm[this.selectedTab.key].reset();
   }
 }
