@@ -11,6 +11,7 @@
         mat-tab-link
         (click)="tabClicked(type)"
         [active]="selectedTab.key === type.key"
+        [ngClass]="{ activeTab: selectedTab.key === type.key }"
       >
         {{ type.value }}
       </a>

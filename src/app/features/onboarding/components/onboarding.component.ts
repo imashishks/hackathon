@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 @Component({
   selector: 'hack-onboarding',
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss'],
 })
 export class OnboardingComponent implements OnInit {
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
   private ONBOARDING_TYPE = [
     {
       key: 'signup',
@@ -35,13 +35,29 @@ export class OnboardingComponent implements OnInit {
       type: 'password',
     },
   };
+
   selectedTab: {
     key: string;
     value: string;
   };
-
+  onboardingForm;
   ngOnInit(): void {
     this.selectedTab = this.ONBOARDING_TYPE[0];
+    this.createFormBuilder();
+  }
+  createFormBuilder() {
+    this.onboardingForm = {
+      login: this.fb.group({
+        employeeId: this.fb.control('', Validators.required),
+        password: this.fb.control('', Validators.required),
+      }),
+      signup: this.fb.group({
+        name: this.fb.control('', Validators.required),
+        employeeId: this.fb.control('', Validators.required),
+        emailId: this.fb.control('', [Validators.required, Validators.email]),
+        password: this.fb.control('', Validators.required),
+      }),
+    };
   }
   getOnboardingType() {
     return this.ONBOARDING_TYPE;

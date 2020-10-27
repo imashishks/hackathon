@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'onboarding',
     pathMatch: 'full',
-    //lazy loading not added as this is the default url anyhow
+    // lazy loading not added as this is the default url anyway
     component: OnboardingComponent,
   },
   {
