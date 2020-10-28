@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { ButtonModel, LoaderModel } from '../../../shared/models/config.model';
-import { HttpService } from 'src/app/shared/services/http/http.service';
+
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { LoginPayload } from '../../../shared/models/onboarding.model';
 @Component({
   selector: 'hack-onboarding',
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss'],
 })
 export class OnboardingComponent implements OnInit {
-  constructor(private fb: FormBuilder, private httpService: HttpService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
   private ONBOARDING_TYPE = [
     {
       key: 'signup',
@@ -103,17 +105,17 @@ export class OnboardingComponent implements OnInit {
     // handle login service
     console.log(this.onboardingForm[this.selectedTab.key]);
     const payload = this.onboardingForm[type].value;
-    this.httpService.Post<{}, any>('/login', payload).subscribe((response) => {
-      console.log(response);
+    this.authService.login(payload).subscribe((user) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
+      console.log(user);
     });
   }
   handleSignupServiceReq(type: string) {
     // handle signup service
     const payload = this.onboardingForm[type].value;
-    this.httpService.Post<{}, any>('/signup', payload).subscribe((response) => {
-      console.log(response);
+    this.authService.signup(payload).subscribe((user) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
+      console.log(user);
     });
   }
 }
