@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OnboardingComponent } from './features/onboarding/components/onboarding.component';
-
+import { AuthGuard } from './shared/helpers/authguard/authguard.guard';
 const routes: Routes = [
   {
     path: 'onboarding',
@@ -10,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'challenge',
+    canActivate: [AuthGuard],
     loadChildren: './features/challenge/challenge.module#ChallengeModule',
   },
   {

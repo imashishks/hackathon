@@ -23,7 +23,7 @@ export class AuthService {
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
-  public get currentUserData(): UserData {
+  currentUserData(): UserData {
     return this.currentUserSubject.value;
   }
   login(payload: LoginPayload) {
