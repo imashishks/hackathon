@@ -115,7 +115,7 @@ export class OnboardingComponent implements OnInit {
     const payload = this.onboardingForm[type].value;
     this.authService.login(payload).subscribe((user) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
-      this.router.navigate(['/challenge']);
+      this.router.navigate(['/challenge/list']);
     }, this.erroHandler.bind(this));
   }
   handleSignupServiceReq(type: string) {
@@ -123,7 +123,7 @@ export class OnboardingComponent implements OnInit {
     const payload = this.onboardingForm[type].value;
     this.authService.signup(payload).subscribe((data) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
-      this.router.navigate(['/challenge']);
+      this.router.navigate(['/challenge/list']);
       this.openSnackBar(data.message, 'success');
     }, this.erroHandler.bind(this));
   }

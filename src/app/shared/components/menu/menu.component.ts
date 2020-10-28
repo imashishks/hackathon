@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'hack-menu',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
   btnConfig = {
     type: 'transparent-light',
     disabled: false,
@@ -15,7 +16,8 @@ export class MenuComponent implements OnInit {
   showFiller = false;
   ngOnInit(): void {}
   signOut() {
-    this.router.navigate(['/']);
+    this.authService.logout();
+    this.router.navigate(['/onboarding']);
   }
   getMenuItems() {
     return MENU_ITEMS;
@@ -28,8 +30,8 @@ export class MenuComponent implements OnInit {
       case 'manage':
         this.router.navigate(['/challenge/manage']);
         break;
-      case 'dashboard':
-        this.router.navigate(['/dashboard']);
+      case 'list':
+        this.router.navigate(['/challenge/list']);
         break;
     }
   }
@@ -37,7 +39,7 @@ export class MenuComponent implements OnInit {
 
 const MENU_ITEMS = [
   {
-    key: 'dashboard',
+    key: 'list',
     value: 'Browse Challenges',
   },
   {
