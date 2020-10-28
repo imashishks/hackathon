@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { ButtonModel, LoaderModel } from '../../../shared/models/config.model';
+import { HttpService } from 'src/app/shared/services/http/http.service';
 @Component({
   selector: 'hack-onboarding',
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss'],
 })
 export class OnboardingComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private httpService: HttpService) {}
   private ONBOARDING_TYPE = [
     {
       key: 'signup',
@@ -93,15 +94,26 @@ export class OnboardingComponent implements OnInit {
 
     if (formDataStatus === 'VALID') {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: true } };
-      this.selectedTab.key === 'singup'
-        ? this.handleSignupServiceReq()
-        : this.handleLoginServiceReq();
+      this.selectedTab.key === 'signup'
+        ? this.handleSignupServiceReq(this.selectedTab.key)
+        : this.handleLoginServiceReq(this.selectedTab.key);
     }
   }
-  handleLoginServiceReq() {
+  handleLoginServiceReq(type: string) {
     // handle login service
+    console.log(this.onboardingForm[this.selectedTab.key]);
+    const payload = this.onboardingForm[type].value;
+    this.httpService.Post<{}, any>('/login', payload).subscribe((response) => {
+      console.log(response);
+      this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
+    });
   }
-  handleSignupServiceReq() {
+  handleSignupServiceReq(type: string) {
     // handle signup service
+    const payload = this.onboardingForm[type].value;
+    this.httpService.Post<{}, any>('/signup', payload).subscribe((response) => {
+      console.log(response);
+      this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
+    });
   }
 }
