@@ -244,3 +244,15 @@ $padding-sizes: 5, 10, 20, 30, 50;
   color: $hack-accent;
   background-color: transparent;
 }
+
+//Common classes
+.success-snackbar {
+  color: $hack-white;
+  background-color: $hack-success;
+  text-align: center;
+}
+.error-snackbar {
+  color: $hack-white;
+  background-color: $hack-error;
+  text-align: center;
+}

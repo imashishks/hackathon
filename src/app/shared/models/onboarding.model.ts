@@ -5,11 +5,9 @@ export interface SignUpPayload {
   password: string;
 }
 export interface SignUpResponse {
-  name: string;
-  emailId: string;
-  employeeId: string;
-  score: string;
-  token: string;
+  error: boolean;
+  message: string;
+  data: UserData;
 }
 
 export interface LoginPayload {
@@ -30,4 +28,5 @@ export interface UserData {
   emailId: string;
   employeeId: string;
   score: string;
+  token?: string;
 }

@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ButtonDirective } from './directives/button.directive';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,6 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTabsModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   exports: [
     // modules
@@ -21,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTabsModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
 
     // Components
     LoaderComponent,

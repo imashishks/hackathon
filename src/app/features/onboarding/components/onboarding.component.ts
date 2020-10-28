@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { ButtonModel, LoaderModel } from '../../../shared/models/config.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { LoginPayload } from '../../../shared/models/onboarding.model';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'hack-onboarding',
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss'],
 })
 export class OnboardingComponent implements OnInit {
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) {}
   private ONBOARDING_TYPE = [
     {
       key: 'signup',
@@ -55,7 +61,7 @@ export class OnboardingComponent implements OnInit {
   onboardingForm: { login; signup };
   onboardingFormProps: Array<string>;
   onboardingInputRef = this.getOnboardingInputRef();
-
+  error: string;
   ngOnInit(): void {
     this.selectedTab = this.ONBOARDING_TYPE[0];
     this.createFormBuilder();
@@ -108,14 +114,28 @@ export class OnboardingComponent implements OnInit {
     this.authService.login(payload).subscribe((user) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
       console.log(user);
-    });
+    }, this.erroHandler.bind(this));
   }
   handleSignupServiceReq(type: string) {
     // handle signup service
     const payload = this.onboardingForm[type].value;
-    this.authService.signup(payload).subscribe((user) => {
+    this.authService.signup(payload).subscribe((data) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
-      console.log(user);
+      this.openSnackBar(data.message, 'success');
+    }, this.erroHandler.bind(this));
+  }
+  openSnackBar(message, type) {
+    const className =
+      type === 'error' ? ['error-snackbar'] : ['success-snackbar'];
+    this.snackBar.open(message, '', {
+      duration: environment.toastMessageTime,
+      panelClass: className,
     });
+  }
+
+  erroHandler(error) {
+    console.log(error);
+    this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
+    this.openSnackBar(error?.error, 'error');
   }
 }

@@ -6,7 +6,6 @@ import {
 } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root',
@@ -18,17 +17,13 @@ export class HttpService {
   }
   // Get Request
   Get<Response>(path: string, params?: HttpParams) {
-    return this.httpClient
-      .get<Response>(this.getURL(path), {
-        params,
-      })
-      .pipe(retry(environment.noOfGetRetries), catchError(this.errorHander));
+    return this.httpClient.get<Response>(this.getURL(path), {
+      params,
+    });
   }
   // Post Request
   Post<Response, Payload>(path: string, data: Payload): Observable<Response> {
-    return this.httpClient
-      .post<Response>(environment.restApiUrl + path, data)
-      .pipe(retry(environment.noOfPostRetries), catchError(this.errorHander));
+    return this.httpClient.post<Response>(environment.restApiUrl + path, data);
   }
   errorHander(error: HttpErrorResponse) {
     console.log(error);

@@ -7,7 +7,6 @@ import {
   UserData,
 } from '../../models/onboarding.model';
 import { HttpService } from '../http/http.service';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -46,7 +45,7 @@ export class AuthService {
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
+          this.currentUserSubject.next(user.data);
           return user;
         })
       );
