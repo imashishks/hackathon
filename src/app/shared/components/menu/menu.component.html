@@ -1,0 +1,32 @@
+<mat-drawer-container autosize>
+  <mat-toolbar class="align-hor-space-between" color="accent">
+    <button hack-button [config]="btnConfig" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button hack-button [config]="btnConfig" (click)="signOut()">
+      Sign out
+    </button>
+  </mat-toolbar>
+  <mat-drawer #drawer class="padding-30" mode="over">
+    <div class="menu__profile__wrap mt-30 flex-container">
+      <div class="menu_display_picture"></div>
+      <div class="flex-container flex-dir-col ml-10 align-vert-center">
+        <span class="font-regular-20-black">Ashish Kumar</span>
+        <span class="font-regular-14-lightgray">Score: 89</span>
+      </div>
+    </div>
+    <div class="menu_display_list mt-50 flex-container flex-dir-col">
+      <span
+        *ngFor="let item of getMenuItems()"
+        class="menu__display__items font-regular-14-lightgray padding-vertical-20"
+        (click)="menuItemClicked(item); drawer.close()"
+      >
+        {{ item.value }}
+      </span>
+    </div>
+  </mat-drawer>
+
+  <div>
+    <ng-content> </ng-content>
+  </div>
+</mat-drawer-container>

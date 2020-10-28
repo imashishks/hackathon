@@ -4,8 +4,9 @@ import { ButtonModel, LoaderModel } from '../../../shared/models/config.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import { LoginPayload } from '../../../shared/models/onboarding.model';
+
 import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'hack-onboarding',
   templateUrl: './onboarding.component.html',
@@ -15,7 +16,8 @@ export class OnboardingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
   private ONBOARDING_TYPE = [
     {
@@ -113,7 +115,7 @@ export class OnboardingComponent implements OnInit {
     const payload = this.onboardingForm[type].value;
     this.authService.login(payload).subscribe((user) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
-      console.log(user);
+      this.router.navigate(['/challenge']);
     }, this.erroHandler.bind(this));
   }
   handleSignupServiceReq(type: string) {
@@ -121,6 +123,7 @@ export class OnboardingComponent implements OnInit {
     const payload = this.onboardingForm[type].value;
     this.authService.signup(payload).subscribe((data) => {
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
+      this.router.navigate(['/challenge']);
       this.openSnackBar(data.message, 'success');
     }, this.erroHandler.bind(this));
   }

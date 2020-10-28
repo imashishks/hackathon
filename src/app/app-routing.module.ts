@@ -5,9 +5,12 @@ import { OnboardingComponent } from './features/onboarding/components/onboarding
 const routes: Routes = [
   {
     path: 'onboarding',
-    pathMatch: 'full',
     // lazy loading not added as this is the default url anyway
     component: OnboardingComponent,
+  },
+  {
+    path: 'challenge',
+    loadChildren: './features/challenge/challenge.module#ChallengeModule',
   },
   {
     path: '',

@@ -7,7 +7,19 @@ import { ButtonDirective } from './directives/button.directive';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 @NgModule({
+  declarations: [
+    LoaderComponent,
+    ButtonDirective,
+    MenuComponent,
+    ToolbarComponent,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
@@ -15,6 +27,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
   ],
   exports: [
     // modules
@@ -24,13 +39,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatSidenavModule,
 
     // Components
     LoaderComponent,
+    MenuComponent,
+    ToolbarComponent,
 
     // Directives
     ButtonDirective,
   ],
-  declarations: [LoaderComponent, ButtonDirective],
 })
 export class SharedModule {}
