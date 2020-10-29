@@ -1,1 +1,55 @@
-<p>details works!</p>
+<div class="challenge-details__wrapper flex-container">
+  <hack-loader [config]="loaderConfig"></hack-loader>
+  <div class="challenge-details__item-wrap">
+    <mat-card class="mt-30 challenge-details__card">
+      <nav mat-stretch-tabs mat-tab-nav-bar>
+        <a
+          *ngFor="let type of getChallengeTabs()"
+          mat-tab-link
+          (click)="tabClicked(type)"
+          [active]="selectedTab.key === type.key"
+        >
+          {{ type.value }}
+        </a>
+      </nav>
+      <div
+        *ngIf="selectedTab.key === 'problem' && challengeItem"
+        class="challenge-details__wrap padding-30"
+      >
+        <div
+          class="mb-30"
+          *ngFor="let problem of challengeItem.problemStatement"
+        >
+          <p class="font-regular-20-black">{{ problem.header }}</p>
+          <p class="font-regular-14-lightgray">{{ problem.description }}</p>
+        </div>
+      </div>
+      <div *ngIf="selectedTab.key === 'joinhands'">
+        <hack-table-list
+          [data]="joinHandsData"
+          [columns]="getJoinHandsColumns()"
+        ></hack-table-list>
+      </div>
+      <div *ngIf="selectedTab.key === 'leaderboard'">
+        <hack-table-list
+          [data]="leadersBoardData"
+          [columns]="getLeadersBoardColumns()"
+        ></hack-table-list>
+      </div>
+    </mat-card>
+    <mat-card class="mt-20 padding-30">
+      <div class="flex-container flex-dir-col challenge__submission_card">
+        <p class="font-regular-20-black">Submit you solution here</p>
+        <textarea class="mt-30 mb-30 challenge__solution__input"></textarea>
+        <button
+          hack-button
+          class="align-self-end"
+          [config]="submitConfig"
+          (click)="submitAnswer()"
+        >
+          Submit Code
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

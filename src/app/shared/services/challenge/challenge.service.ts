@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpService } from '../http/http.service';
-import { ChallegeItem } from '../../models/challenge.model';
+import { ChallegeItem, ChallengeDetails } from '../../models/challenge.model';
 import { HttpParams } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
 @Injectable()
@@ -20,5 +20,11 @@ export class ChallengeService {
   }
   getTagsList() {
     return this.httpService.Get<Array<{ value: string }>>('tags');
+  }
+  getChallengeItem(id) {
+    let params = new HttpParams();
+    params = params.append('challengeId', id);
+
+    return this.httpService.Get<ChallengeDetails>('challengedetails', params);
   }
 }

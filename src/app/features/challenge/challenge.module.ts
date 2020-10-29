@@ -7,12 +7,14 @@ import { ListComponent } from './components/list/list.component';
 import { AddComponent } from './components/add/add.component';
 import { ManageComponent } from './components/manage/manage.component';
 import { ChallengeService } from 'src/app/shared/services/challenge/challenge.service';
+import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({
   declarations: [
     ChallengeComponent,
     ListComponent,
     AddComponent,
+    DetailsComponent,
     ManageComponent,
   ],
   providers: [ChallengeService],

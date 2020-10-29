@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { ChallegeItem } from 'src/app/shared/models/challenge.model';
 import { map } from 'rxjs/operators';
 import { UtilService } from 'src/app/shared/services/util/util.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hack-list',
@@ -22,6 +23,7 @@ export class ListComponent implements OnInit {
   constructor(
     private challengeService: ChallengeService,
     private dataSharing: DataSharingService,
+    private router: Router,
     private authService: AuthService,
     private utilService: UtilService
   ) {}
@@ -137,6 +139,6 @@ export class ListComponent implements OnInit {
     console.log(data);
   }
   challengeItemClicked(item) {
-    console.log(item);
+    this.router.navigate(['/challenge/details/' + item.challengeId]);
   }
 }

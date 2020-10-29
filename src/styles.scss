@@ -256,3 +256,13 @@ $padding-sizes: 5, 10, 20, 30, 50;
   background-color: $hack-error;
   text-align: center;
 }
+
+.tags {
+  background: $hack-success;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: $hack-white;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

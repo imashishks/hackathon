@@ -18,6 +18,8 @@ import { TagsDirective } from './directives/tags/tags.directive';
 import { FilterComponent } from './components/filter/filter.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TableListComponent } from './components/table-list/table-list.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GreetingsComponent,
     ChallengeItemComponent,
     FilterComponent,
+    TableListComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSidenavModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatTableModule,
   ],
   exports: [
     // modules
@@ -55,6 +59,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSidenavModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatTableModule,
 
     // Components
     LoaderComponent,
@@ -63,6 +68,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GreetingsComponent,
     ChallengeItemComponent,
     FilterComponent,
+    TableListComponent,
+
     // Directives
     ButtonDirective,
     TagsDirective,

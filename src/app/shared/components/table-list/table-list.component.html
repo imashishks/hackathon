@@ -1,0 +1,29 @@
+<mat-table matSort [dataSource]="dataSource">
+  <!-- User name Definition -->
+  <!-- <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <!-- <ng-container matColumnDef="score">
+    <mat-header-cell *matHeaderCellDef>Score </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.score }} </mat-cell>
+  </ng-container> -->
+
+  <!-- Title Definition -->
+  <ng-container *ngFor="let col of columns" matColumnDef="{{ col.key }}">
+    <mat-header-cell *matHeaderCellDef>{{ col.value }} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element[col.key] }} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *matHeaderRowDef="getDisplayColumns()"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: getDisplayColumns()"></mat-row>
+</mat-table>
+<!-- <mat-paginator
+  [length]="dataSourceLength"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator> -->

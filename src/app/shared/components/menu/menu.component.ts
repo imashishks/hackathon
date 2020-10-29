@@ -54,8 +54,8 @@ const MENU_ITEMS = [
     key: 'add',
     value: 'Add Challenge',
   },
-  {
-    key: 'manage',
-    value: 'Manage Challenge',
-  },
+  // {
+  //   key: 'manage',
+  //   value: 'Manage Challenge',
+  // },
 ];
