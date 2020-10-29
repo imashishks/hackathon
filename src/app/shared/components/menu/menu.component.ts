@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { UserData } from '../../models/onboarding.model';
 
 @Component({
   selector: 'hack-menu',
@@ -8,13 +9,20 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+  user: UserData;
   constructor(private router: Router, private authService: AuthService) {}
   btnConfig = {
     type: 'transparent-light',
     disabled: false,
   };
   showFiller = false;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUser();
+  }
+  getUser() {
+    this.user = this.authService.currentUserData();
+    console.log(this.user);
+  }
   signOut() {
     this.authService.logout();
     this.router.navigate(['/onboarding']);

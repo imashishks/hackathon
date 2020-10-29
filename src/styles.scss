@@ -121,7 +121,7 @@ $font-family: (
   "roboto": $hack-font,
 );
 
-$font-sizes: 10, 12, 14, 16, 20, 36;
+$font-sizes: 10, 12, 14, 16, 20, 30, 36;
 @each $familyKey, $familyValue in $font-family {
   @each $size in $font-sizes {
     @each $colorKey, $colorValue in $font-colors {

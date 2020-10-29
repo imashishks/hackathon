@@ -9,10 +9,14 @@
   </mat-toolbar>
   <mat-drawer #drawer class="padding-30" mode="over">
     <div class="menu__profile__wrap mt-30 flex-container">
-      <div class="menu_display_picture"></div>
+      <div
+        class="menu_display_picture flex-container align-center font-light-30-lightgray"
+      >
+        {{ "AK" }}
+      </div>
       <div class="flex-container flex-dir-col ml-10 align-vert-center">
-        <span class="font-regular-20-black">Ashish Kumar</span>
-        <span class="font-regular-14-lightgray">Score: 89</span>
+        <span class="font-regular-20-black">{{ user.name }}</span>
+        <span class="font-regular-14-lightgray">Score: {{ user.score }}</span>
       </div>
     </div>
     <div class="menu_display_list mt-50 flex-container flex-dir-col">
