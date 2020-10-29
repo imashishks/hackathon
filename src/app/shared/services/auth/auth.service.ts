@@ -23,8 +23,11 @@ export class AuthService {
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
-  currentUserData(): UserData {
+  get currentUserData(): UserData {
     return this.currentUserSubject.value;
+  }
+  set currentUserData(userData) {
+    this.currentUserSubject.next(userData);
   }
   login(payload: LoginPayload) {
     return this.httpService

@@ -12,6 +12,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { GreetingsComponent } from './components/greetings/greetings.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ButtonDirective,
     MenuComponent,
     ToolbarComponent,
+    GreetingsComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     LoaderComponent,
     MenuComponent,
     ToolbarComponent,
+    GreetingsComponent,
 
     // Directives
     ButtonDirective,

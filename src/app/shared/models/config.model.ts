@@ -9,3 +9,9 @@ export interface LoaderModel {
   height?: string;
   showFullScreen?: boolean;
 }
+
+export interface GreetingsModel {
+  header?: Array<string>;
+  subHeader?: string;
+  direction?: string;
+}

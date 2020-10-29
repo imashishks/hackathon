@@ -1,0 +1,12 @@
+@import "../../../../assets/style/variables.scss";
+
+.challenge-item__voteicon {
+  color: $hack-lightgray;
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+  left: 3px;
+}
+.challenge-item__voteicon--selected {
+  color: $hack-primary;
+}

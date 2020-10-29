@@ -1,0 +1,57 @@
+<div class="challenge-item__wrap mt-20 mb-20">
+  <mat-card class="challenge-item__mat-card padding-30">
+    <div class="flex-container align-hor-space-between">
+      <div class="challenge-item__left">
+        <span class="font-regular-20-black">{{ data.title }} </span>
+        <mat-icon
+          class="challenge-item__voteicon material-icons cursor-pointer"
+          [ngClass]="{
+            'challenge-item__voteicon--selected': highlightUpvoteIcon
+          }"
+          mat-list-icon
+          (click)="upVoteIconClicked()"
+          >thumb_up
+        </mat-icon>
+        <span class="ml-5 font-regular-18-lightgray">{{ data.upVotes }}</span>
+        <div>
+          <span class="font-regular-14-lightgray">
+            Added On: {{ data.dateCreated | date: "MMM d, y" }},
+          </span>
+          <span class="font-regular-14-primary"
+            >{{ data.difficulty.value }},
+          </span>
+          <span class="font-regular-14-black">
+            Max Score: {{ data.maxScore }},
+          </span>
+          <span class="font-regular-14-black">
+            Success Rate: {{ data.successRate }}%
+          </span>
+        </div>
+      </div>
+      <div class="challenge-item__right">
+        <hack-button
+          [config]="getBtnConfig(data.isSolved)"
+          (click)="itemClicked(data)"
+          >{{ data.isSolved ? "Try Again" : "Solve Challenge" }}
+        </hack-button>
+      </div>
+    </div>
+    <div class="challenge-item__tag__wrap mt-10">
+      <span
+        *ngFor="let tag of data.tags; let i = index"
+        [ngClass]="{ 'ml-5': i }"
+        hack-tags
+        >{{ tag }}</span
+      >
+      <!-- <span hack-tags>algotsdfdsf </span>
+      <span hack-tags class="ml-5">dsfdfs</span>
+      <span hack-tags class="ml-5">dsfdfs</span> -->
+    </div>
+
+    <p class="mt-10 font-regular-16-lightgray">
+      {{ data.shortDescription }}
+      <!-- This is a s,a;;; sdfjlkklfdsa ahshdsfhisdf sdhdfsghisdgfsh This is a
+      s,a;;; sdfjlkklfdsa ahshdsfhisdf sdhdfsghisdgfsh -->
+    </p>
+  </mat-card>
+</div>

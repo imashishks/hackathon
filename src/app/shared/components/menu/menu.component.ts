@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     this.getUser();
   }
   getUser() {
-    this.user = this.authService.currentUserData();
+    this.user = this.authService.currentUserData;
     console.log(this.user);
   }
   signOut() {
