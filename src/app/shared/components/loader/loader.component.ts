@@ -7,7 +7,13 @@ import { LoaderModel } from '../../models/config.model';
 })
 export class LoaderComponent implements OnInit, OnDestroy {
   @Input() config: LoaderModel;
+  private defaultConfig = {
+    show: true,
+    showFullScreen: true,
+  };
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.config = { ...this.defaultConfig, ...this.config };
+  }
   ngOnDestroy(): void {}
 }

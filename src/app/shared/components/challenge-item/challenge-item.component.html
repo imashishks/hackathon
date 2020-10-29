@@ -29,11 +29,13 @@
         </div>
       </div>
       <div class="challenge-item__right">
-        <hack-button
+        <button
+          hack-button
           [config]="getBtnConfig(data.isSolved)"
           (click)="itemClicked(data)"
-          >{{ data.isSolved ? "Try Again" : "Solve Challenge" }}
-        </hack-button>
+        >
+          {{ data.isSolved ? "Try Again" : "Solve Challenge" }}
+        </button>
       </div>
     </div>
     <div class="challenge-item__tag__wrap mt-10">

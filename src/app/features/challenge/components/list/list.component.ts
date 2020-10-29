@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ChallengeService } from 'src/app/shared/services/challenge/challenge.service';
 import { DataSharingService } from 'src/app/shared/services/data-sharing/data-sharing.service';
-import { GreetingsModel } from 'src/app/shared/models/config.model';
+
+import {
+  GreetingsModel,
+  LoaderModel,
+} from 'src/app/shared/models/config.model';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { Observable } from 'rxjs';
+import { ChallegeItem } from 'src/app/shared/models/challenge.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'hack-list',
@@ -15,11 +22,20 @@ export class ListComponent implements OnInit {
     private dataSharing: DataSharingService,
     private authService: AuthService
   ) {}
+  listItem$: Observable<Array<ChallegeItem>>;
   greetingsConfig: GreetingsModel;
+  loaderConfig: LoaderModel = {
+    show: false,
+    showFullScreen: true,
+  };
   ngOnInit(): void {
-    let listItems = this.challengeService.getChallengesList({});
+    // this.challengeService.getChallengesList({}).subscribe((data) => {
+    //   this.listItem = data;
+    //   console.log(data);
+    // });
+    this.listItem$ = this.challengeService.getChallengesList({});
+    console.log(this.listItem$);
     this.setGreetingsConfig();
-    console.log(listItems);
   }
   setGreetingsConfig() {
     const user = this.authService.currentUserData;
@@ -28,5 +44,8 @@ export class ListComponent implements OnInit {
       subHeader: 'Welcome to Hack News',
       direction: 'Look at the open challenges for this month',
     };
+  }
+  challengeItemClicked(item) {
+    console.log(item);
   }
 }

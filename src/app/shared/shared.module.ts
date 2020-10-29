@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { GreetingsComponent } from './components/greetings/greetings.component';
+import { ChallengeItemComponent } from './components/challenge-item/challenge-item.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { GreetingsComponent } from './components/greetings/greetings.component';
     MenuComponent,
     ToolbarComponent,
     GreetingsComponent,
+    ChallengeItemComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,7 @@ import { GreetingsComponent } from './components/greetings/greetings.component';
     MenuComponent,
     ToolbarComponent,
     GreetingsComponent,
-
+    ChallengeItemComponent,
     // Directives
     ButtonDirective,
   ],

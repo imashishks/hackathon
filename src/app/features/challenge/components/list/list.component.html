@@ -1,5 +1,19 @@
 <div class="challenge-list__wrapper flex-container">
   <div class="challenge-list__item-wrap">
     <hack-greetings [config]="greetingsConfig"> </hack-greetings>
+    <!-- <hack-loader [config]="loaderConfig"></hack-loader> -->
+    <ng-template #indicator>
+      <hack-loader></hack-loader>
+    </ng-template>
+    <div *ngIf="listItem$ | async as items; else indicator">
+      <hack-challenge-item
+        *ngFor="let data of items"
+        [challengeData]="data"
+        (challengeItemClicked)="challengeItemClicked($event)"
+      ></hack-challenge-item>
+      <div class="challenge-list--empty" *ngIf="!items.length">
+        <span>No challenges available.</span>
+      </div>
+    </div>
   </div>
 </div>
