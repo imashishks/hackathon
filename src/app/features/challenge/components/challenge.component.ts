@@ -8,7 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class ChallengeComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('challenge works');
-  }
+  ngOnInit(): void {}
 }

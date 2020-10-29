@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChallengeService } from 'src/app/shared/services/challenge/challenge.service';
 
 @Component({
   selector: 'hack-list',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor() {}
+  constructor(private challengeService: ChallengeService) {}
 
   ngOnInit(): void {
-    console.log('this chame');
+    let listItems = this.challengeService.getChallengesList();
+    console.log(listItems);
   }
 }

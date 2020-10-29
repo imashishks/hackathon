@@ -15,6 +15,7 @@ export class HttpService {
   private getURL(path: string): string {
     return environment.restApiUrl + path;
   }
+
   // Get Request
   Get<Response>(path: string, params?: HttpParams) {
     return this.httpClient.get<Response>(this.getURL(path), {
