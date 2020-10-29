@@ -1,0 +1,33 @@
+<div class="ml-10 filter__wrap">
+  <div>
+    <div class="mb-10">{{ filterData.title }}</div>
+    <div>
+      <mat-radio-group
+        *ngIf="filterData.type === 'radio'"
+        aria-label="filterData.title"
+      >
+        <mat-radio-button
+          color="accent"
+          class="mt-5 mb-5 filter__radio"
+          *ngFor="let element of filterData.data"
+          [value]="element.value"
+          (click)="itemClicked(element, filterData)"
+          >{{ element.value }}</mat-radio-button
+        >
+      </mat-radio-group>
+      <div
+        [ngClass]="{ 'filter__checkbox--scroll': filterData.scrollable }"
+        *ngIf="filterData.type === 'checkbox'"
+      >
+        <mat-checkbox
+          color="accent"
+          class="mt-5 mb-5 filter__checkbox"
+          *ngFor="let element of filterData.data"
+          [checked]="element.checked"
+          (click)="itemClicked(element, filterData)"
+          >{{ element.value ? element.value : element.key }}
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+</div>

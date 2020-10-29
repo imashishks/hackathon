@@ -1,19 +1,41 @@
-<div class="challenge-list__wrapper flex-container">
-  <div class="challenge-list__item-wrap">
-    <hack-greetings [config]="greetingsConfig"> </hack-greetings>
-    <!-- <hack-loader [config]="loaderConfig"></hack-loader> -->
-    <ng-template #indicator>
-      <hack-loader></hack-loader>
-    </ng-template>
-    <div *ngIf="listItem$ | async as items; else indicator">
+<div class="challenge-list__wrapper">
+  <hack-greetings [config]="greetingsConfig"> </hack-greetings>
+  <div class="flex-container">
+    <div class="challenge-list__item-wrap">
+      <!-- <hack-loader [config]="loaderConfig"></hack-loader> -->
+
+      <hack-loader [config]="loaderConfig"></hack-loader>
+
       <hack-challenge-item
-        *ngFor="let data of items"
+        *ngFor="let data of displayData"
         [challengeData]="data"
         (challengeItemClicked)="challengeItemClicked($event)"
       ></hack-challenge-item>
-      <div class="challenge-list--empty" *ngIf="!items.length">
+      <div
+        class="challenge-list--empty"
+        *ngIf="!displayData.length && !loaderConfig.show"
+      >
         <span>No challenges available.</span>
       </div>
+    </div>
+    <div
+      *ngIf="challengeData.length"
+      class="challenge-list__filter-wrap padding-20"
+    >
+      <hack-filter
+        [data]="sortFilter"
+        (getSelectedFilter)="getSortFilter($event)"
+      ></hack-filter>
+      <hr class="mt-20 mb-20" />
+      <hack-filter
+        [data]="difficultyFilter"
+        (getSelectedFilter)="getDifficultyFilter($event)"
+      ></hack-filter>
+      <hr class="mt-20 mb-20" />
+      <hack-filter
+        [data]="tagsFilter"
+        (getSelectedFilter)="getTagsFilter($event)"
+      ></hack-filter>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { GreetingsModel } from '../../../../shared/models/config.model';
 import { DataSharingService } from 'src/app/shared/services/data-sharing/data-sharing.service';
 @Component({
-  selector: 'app-manage',
+  selector: 'hack-manage',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.scss'],
 })

@@ -15,3 +15,8 @@ export interface GreetingsModel {
   subHeader?: string;
   direction?: string;
 }
+
+export interface HackObj {
+  key: string;
+  value: string;
+}

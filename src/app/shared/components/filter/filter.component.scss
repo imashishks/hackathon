@@ -1,0 +1,15 @@
+@import "../../../../assets/styles/variables.scss";
+.filter__wrap {
+  width: 100%;
+}
+.filter__radio,
+.filter__checkbox {
+  width: 100%;
+  display: block;
+  color: $hack-lightgray;
+}
+.filter__radio--scroll,
+.filter__checkbox--scroll {
+  overflow-y: scroll;
+  max-height: 150px;
+}

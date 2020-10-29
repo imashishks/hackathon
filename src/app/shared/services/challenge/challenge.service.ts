@@ -18,4 +18,7 @@ export class ChallengeService {
     params = params.append('tags', JSON.stringify(filterList.tags));
     return this.httpService.Get<Array<ChallegeItem>>('challenges', params);
   }
+  getTagsList() {
+    return this.httpService.Get<Array<{ value: string }>>('tags');
+  }
 }

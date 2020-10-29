@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
-import { ButtonDirective } from './directives/button.directive';
+import { ButtonDirective } from './directives/button/button.directive';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -14,15 +14,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { GreetingsComponent } from './components/greetings/greetings.component';
 import { ChallengeItemComponent } from './components/challenge-item/challenge-item.component';
+import { TagsDirective } from './directives/tags/tags.directive';
+import { FilterComponent } from './components/filter/filter.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
-    LoaderComponent,
     ButtonDirective,
+    TagsDirective,
+
+    LoaderComponent,
     MenuComponent,
     ToolbarComponent,
     GreetingsComponent,
     ChallengeItemComponent,
+    FilterComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +41,8 @@ import { ChallengeItemComponent } from './components/challenge-item/challenge-it
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
+    MatRadioModule,
+    MatCheckboxModule,
   ],
   exports: [
     // modules
@@ -44,6 +53,8 @@ import { ChallengeItemComponent } from './components/challenge-item/challenge-it
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatSidenavModule,
+    MatRadioModule,
+    MatCheckboxModule,
 
     // Components
     LoaderComponent,
@@ -51,8 +62,10 @@ import { ChallengeItemComponent } from './components/challenge-item/challenge-it
     ToolbarComponent,
     GreetingsComponent,
     ChallengeItemComponent,
+    FilterComponent,
     // Directives
     ButtonDirective,
+    TagsDirective,
   ],
 })
 export class SharedModule {}

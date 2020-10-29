@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { ButtonModel } from '../models/config.model';
+import { ButtonModel } from '../../models/config.model';
 
 @Directive({
   selector: '[hack-button]',

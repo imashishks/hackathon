@@ -1,9 +1,15 @@
 @import "../../../../../assets/styles/variables.scss";
 .challenge-list--empty {
-  margin: 50px;
+  margin: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 50px;
   opacity: 0.1;
+}
+.challenge-list__item-wrap {
+  width: 70%;
+}
+.challenge-list__filter-wrap {
+  width: 150px;
 }
