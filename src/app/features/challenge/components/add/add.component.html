@@ -1,1 +1,36 @@
-<p>add works!</p>
+<div class="challenge__add__wrapper">
+  <hack-greetings [config]="greetingsConfig"></hack-greetings>
+  <mat-card class="mt-30 padding-30">
+    <div class="flex-container flex-dir-col challenge__submission_card">
+      <form
+        [formGroup]="formGroup"
+        #formDirective="ngForm"
+        class="flex-container flex-dir-col"
+      >
+        <mat-form-field class="example-full-width">
+          <mat-label>Title</mat-label>
+          <input formControlName="title" matInput type="text" />
+        </mat-form-field>
+        <p class="mt-30 font-regular-20-black">Describe the challenge</p>
+        <textarea
+          formControlName="description"
+          class="mt-30 mb-30 challenge__solution__input"
+        ></textarea>
+
+        <mat-form-field class="mb-30 example-full-width">
+          <mat-label>Tags</mat-label>
+          <input formControlName="tags" matInput type="text" />
+          <mat-hint>Sepeate them with commas</mat-hint>
+        </mat-form-field>
+        <button
+          hack-button
+          class="align-self-end"
+          [config]="submitConfig"
+          (ngSubmit)="submitChallenge()"
+        >
+          Submit Code
+        </button>
+      </form>
+    </div>
+  </mat-card>
+</div>

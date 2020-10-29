@@ -13,3 +13,12 @@
 .challenge-list__filter-wrap {
   width: 150px;
 }
+
+@media only screen and (max-width: 600px) {
+  .challenge-list__item-wrap {
+    width: 100%;
+  }
+  .challenge-list__filter-wrap {
+    display: none;
+  }
+}

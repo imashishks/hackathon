@@ -8,7 +8,7 @@ import { AddComponent } from './components/add/add.component';
 import { ManageComponent } from './components/manage/manage.component';
 import { ChallengeService } from 'src/app/shared/services/challenge/challenge.service';
 import { DetailsComponent } from './components/details/details.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ChallengeComponent,
@@ -18,6 +18,6 @@ import { DetailsComponent } from './components/details/details.component';
     ManageComponent,
   ],
   providers: [ChallengeService],
-  imports: [SharedModule, ChallengeRoutingModule],
+  imports: [SharedModule, ChallengeRoutingModule, ReactiveFormsModule],
 })
 export class ChallengeModule {}

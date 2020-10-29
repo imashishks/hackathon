@@ -1,0 +1,10 @@
+@import "../../../../../assets/styles/variables.scss";
+.challenge__solution__input {
+  resize: none;
+  background: $hack-background;
+  border: none;
+  width: 100%;
+  color: $hack-lightgray;
+  outline: none;
+  height: 300px;
+}
