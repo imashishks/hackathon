@@ -23,6 +23,10 @@ export class DetailsComponent implements OnInit {
     type: 'primary',
     disabled: false,
   };
+  greetingsConfig = {
+    header: [],
+    subHeader: 'Here’s the details of the challenge. We know you can do this.',
+  };
 
   selectedTab;
   challengeItem: ChallegeItem;
@@ -47,6 +51,7 @@ export class DetailsComponent implements OnInit {
     );
     result.subscribe((data) => {
       this.challengeItem = data.challengeDetails;
+      this.greetingsConfig.header.push(this.challengeItem.title);
       this.joinHandsData = data.joinHandsData;
       this.leadersBoardData = data.leadersBoardData;
       console.log(data);
