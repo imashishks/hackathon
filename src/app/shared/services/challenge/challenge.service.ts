@@ -14,7 +14,7 @@ export class ChallengeService {
     params = params.append('page', filterList.page);
     params = params.append('limit', filterList.limit);
     params = params.append('sortBy', filterList.sortBy);
-    params = params.append('difficulty', filterList.difficulty);
+    params = params.append('difficulty', JSON.stringify(filterList.difficulty));
     params = params.append('tags', JSON.stringify(filterList.tags));
     return this.httpService.Get<Array<ChallegeItem>>('challenges', params);
   }

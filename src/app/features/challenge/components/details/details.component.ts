@@ -6,6 +6,7 @@ import { mergeMap, map, switchMap } from 'rxjs/operators';
 import { pipe } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'hack-details',
@@ -17,7 +18,8 @@ export class DetailsComponent implements OnInit {
     private challengeService: ChallengeService,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) {}
   submitConfig = {
     type: 'primary',
@@ -52,12 +54,21 @@ export class DetailsComponent implements OnInit {
     result.subscribe((data) => {
       this.challengeItem = data.challengeDetails;
       this.greetingsConfig.header.push(this.challengeItem.title);
-      this.joinHandsData = data.joinHandsData;
+
+      this.formatJoinHandsData(data.joinHandsData);
       this.leadersBoardData = data.leadersBoardData;
       console.log(data);
       this.hideLoader();
     });
     console.log(result);
+  }
+  formatJoinHandsData(data) {
+    this.joinHandsData = data.map((data) => {
+      let d = { ...data };
+      d.date = this.datePipe.transform(d.date, 'MMM d, y');
+      return d;
+    });
+    console.log(this.joinHandsData);
   }
   getChallengeTabs() {
     return CHALLENGE_TABS;

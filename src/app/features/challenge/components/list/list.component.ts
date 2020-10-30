@@ -80,6 +80,13 @@ export class ListComponent implements OnInit {
     data: [],
     scrollable: true,
   };
+  filterList = {
+    page: 1,
+    limit: 10,
+    sortBy: '',
+    difficulty: [],
+    tags: [],
+  };
   displayData = [];
   ngOnInit(): void {
     // this.challengeService.getChallengesList({}).subscribe((data) => {
@@ -87,12 +94,13 @@ export class ListComponent implements OnInit {
     //   console.log(data);
     // });
     this.getTags();
-    this.getChallengeList();
+    this.getChallengeList(this.filterList);
     this.setGreetingsConfig();
   }
 
-  getChallengeList() {
-    this.challengeService.getChallengesList({}).subscribe((data) => {
+  getChallengeList(filterList) {
+    this.loaderConfig = { ...this.loaderConfig, ...{ show: true } };
+    this.challengeService.getChallengesList(filterList).subscribe((data) => {
       this.challengeData = data;
       this.displayData = [...this.challengeData];
       this.loaderConfig = { ...this.loaderConfig, ...{ show: false } };
@@ -115,29 +123,40 @@ export class ListComponent implements OnInit {
     const title = this.sortFilter.title;
     const sortByKey = data[0].key;
     console.log(sortByKey);
-    if (this.setSelectedsortByKey !== sortByKey) {
-      this.setSelectedsortByKey = sortByKey;
+    // if (this.setSelectedsortByKey !== sortByKey) {
+    //   this.setSelectedsortByKey = sortByKey;
 
-      this.displayData = this.utilService.sortArrayBasedOnProps(
-        this.displayData,
-        this.setSelectedsortByKey,
-        'DESC'
-      );
-    }
+    //   this.displayData = this.utilService.sortArrayBasedOnProps(
+    //     this.displayData,
+    //     this.setSelectedsortByKey,
+    //     'DESC'
+    //   );
+    // }
+    this.filterList.sortBy = sortByKey;
+    this.getChallengeList(this.filterList);
   }
   getDifficultyFilter(data) {
     const keys = data.map((ele) => ele.key);
-    this.displayData = this.challengeData.filter((fData) => {
-      return keys.indexOf(fData.difficulty.key) !== -1;
-    });
+    // this.displayData = this.challengeData.filter((fData) => {
+    //   const tempArr = fData.tags.filter((value) => keys.includes(value));
+    //   return tempArr.length;
+    // });
+    this.filterList.difficulty = keys;
+    this.getChallengeList(this.filterList);
   }
+
   getTagsFilter(data) {
-    const keys = data.map((ele) => ele.key);
-    this.displayData = this.challengeData.filter((fData) => {
-      return keys.indexOf(fData.tags) !== -1;
-    });
-    console.log(data);
+    const keys = data.map((ele) => ele.value);
+    // console.log(this.displayData);
+    // this.displayData = this.challengeData.filter((fData) => {
+    //   const tempArr = fData.tags.filter((value) => keys.includes(value));
+    //   return tempArr.length;
+    // });
+    // console.log(data);
+    this.filterList.tags = keys;
+    this.getChallengeList(this.filterList);
   }
+
   challengeItemClicked(item) {
     this.router.navigate(['/challenge/details/' + item.challengeId]);
   }
